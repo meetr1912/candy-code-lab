@@ -122,3 +122,5 @@ h2 { font-size: 1.125rem; font-weight: 650; letter-spacing: -.025em; }
 .research-content { display: grid; gap: 18px; padding-top: 22px; }
 .research-content > h2 { font-size: 1.2rem; font-weight: 650; margin-top: 8px; }
 .research-content > .attempt-list { margin-top: 0; }
+.test-context { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 600px) { .test-context { grid-template-columns: 1fr; } }
