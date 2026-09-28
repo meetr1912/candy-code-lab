@@ -1,6 +1,11 @@
 export type TargetTier = "gold" | "bronze";
 export type Tier = TargetTier | "silver" | "diamond";
 export type Outcome = "accepted" | "rejected";
+export type TestContext = {
+  origin: "backend-issued" | "calculated" | "unknown";
+  use: "first" | "retry" | "unknown";
+  campaign: string;
+};
 export type Attempt = {
   id: string;
   code: string;
@@ -9,6 +14,7 @@ export type Attempt = {
   note: string;
   recordedAt: string | null;
   source: "transcript" | "manual";
+  testContext?: TestContext;
 };
 export type Candidate = {
   code: string;
