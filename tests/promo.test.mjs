@@ -4,9 +4,11 @@ import { build } from "esbuild";
 const compiled = await build({ entryPoints: [new URL("../lib/promo.ts", import.meta.url).pathname], bundle: true, write: false, format: "esm", platform: "node" });
 const p = await import("data:text/javascript;base64," + Buffer.from(compiled.outputFiles[0].text).toString("base64"));
 
-test("reproduces every previously accepted code at its reported tier", () => {
+test("reproduces the fitted Gold examples and preserves corrected observed tiers", () => {
   for (const code of ["93619", "22340", "50384", "47788"]) assert.equal(p.candidateFor(code.slice(0, 3), "gold"), code);
-  for (const code of ["10459", "47724"]) assert.equal(p.candidateFor(code.slice(0, 3), "bronze"), code);
+  assert.equal(p.candidateFor("104", "bronze"), "10459");
+  assert.deepEqual(p.summarizeCode("47724", p.SEED_ATTEMPTS).observedTiers, ["silver"]);
+  assert.equal(p.candidateFor("477", "bronze"), "47724", "the legacy Bronze arithmetic misclassifies a confirmed Silver code");
 });
 test("distinguishes arithmetic mismatch from a reported rejection", () => {
   assert.equal(p.checkCode("10455").matches, false);
@@ -72,7 +74,7 @@ test("new Gold tests falsify both checksum hypotheses as acceptance filters", ()
   assert.deepEqual(result.generated.gold, { accepted: 0, rejected: 4, untested: 0 });
   assert.deepEqual(result.generated.bronze, { accepted: 0, rejected: 0, untested: 0 });
   assert.deepEqual(result.rejectedMatchingBoth.sort(), failedCodes.sort());
-  assert.deepEqual(result.tierConflicts, ["47724"]);
+  assert.deepEqual(result.tierConflicts, []);
   assert.equal(p.summarizeCode("47724", state.attempts).accepted, 3);
   assert.equal(p.candidatePool("gold", new Set([...state.candidates.map(c => c.code), ...state.attempts.map(a => a.code)])).includes("55528"), false);
 });
