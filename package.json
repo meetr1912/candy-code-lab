@@ -9,7 +9,7 @@
     "dev": "vite --config vite.pages.config.ts",
     "build": "vite build --config vite.pages.config.ts",
     "build:pages": "vite build --config vite.pages.config.ts",
-    "test:pages": "node --test tests/promo.test.mjs tests/github-ledger.test.mjs",
+    "test:pages": "node --test tests/promo.test.mjs tests/github-ledger.test.mjs tests/experiments.test.mjs",
     "migrate:github": "node scripts/import-history.mjs"
   },
   "dependencies": {
