@@ -70,6 +70,16 @@ test('attempts append, support Unicode, and retry idempotently without overwriti
   assert.ok(server.ledger.attempts.some(a => a.code === '47788' && a.outcome === 'accepted'));
   await assert.rejects(app.api('/api/attempts', { ...input, note: 'changed' }), /different details/);
 });
+test('structured first-use metadata persists while historical attempts stay compatible', async () => {
+  const server = fakeGithub(), app = client(server);
+  const input = { requestId: crypto.randomUUID(), code: '55528', outcome: 'rejected', observedTier: null, note: 'Not recognized', testContext: { origin: 'calculated', use: 'first', campaign: 'fall-26' } };
+  await app.api('/api/attempts', input);
+  assert.deepEqual(server.ledger.attempts.at(-1).testContext, input.testContext);
+  assert.equal(server.ledger.attempts[0].testContext, undefined);
+  await app.api('/api/attempts', input);
+  assert.equal(server.ledger.attempts.length, 10);
+  await assert.rejects(app.api('/api/attempts', { ...input, testContext: { ...input.testContext, use: 'retry' } }), /different details/);
+});
 test('all recorded and generated codes remain excluded through pool exhaustion', () => {
   let ledger = initial();
   const excluded = new Set(ledger.attempts.map(a => a.code));
