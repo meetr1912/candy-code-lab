@@ -4,16 +4,15 @@ Target: public `meetr1912/candy-code-lab`, branch `main`. Once deployed, the URL
 
 The current hosted app uses Cloudflare D1. The Pages build reads and updates **`data/ledger.json` through the GitHub Contents API**, not the cached Pages copy. Every generated candidate and every attempt is retained. All recorded codes are excluded from subsequent generation, irrespective of outcome. Rejected retries never erase earlier acceptances.
 
-## Migration and initial publication
+## Publication and history
 
-1. Stop using the old app for generation and recording. Export its latest history from the History tab. Do not resume writes there after exporting; the old deployment is not connected to GitHub.
-2. Install Node 22 and GitHub CLI. Run `gh auth login` as `meetr1912` with repository and workflow access.
-3. From the project directory, run `npm ci`, then `npm run migrate:github -- /absolute/path/to/candy-code-history.json`.
-4. Run `npm run setup:github`. This validates the build, creates a fresh public repository without private source history or runtime files, pushes the code, enables Pages, and requests deployment. It fails if the repository already exists. No force push is used.
-5. Check the Pages workflow on GitHub. If repository creation succeeded but Pages setup failed, enable Settings → Pages → Source → GitHub Actions and run the GitHub Pages workflow. Do not rerun repository creation.
-6. Use only the Pages app going forward. The old D1 site remains a historical copy; stop using it or retire it after verifying the import. Import is idempotent for identical records and refuses conflicting records.
+The public app is live at https://meetr1912.github.io/candy-code-lab/ and deploys from `.github/workflows/pages.yml`. The JSON ledger in `data/ledger.json` contains all nine original transcript attempts, nine later D1 attempts, 30 reserved candidates, and six generation requests carried over at cutover on September 28, 2026. The old Site now blocks writes and links here; its original history remains readable through its `/api/lab` endpoint.
 
-The checked-in snapshot contains the nine transcript attempts, nine newer D1 attempts, and 30 reserved candidates as of September 28, 2026. It is a point-in-time copy. Writes fail closed until the latest complete D1 export is imported after stopping the old app. Import can also be done in the Pages UI after connecting a token.
+The Pages app reads the latest JSON file from GitHub on every operation. It does not rely on a cached Pages copy. To import another previously exported history, connect a repository-scoped token in the app and use **Import the original app’s history**. The import merges records and refuses conflicting IDs. Do not reset or replace the ledger with a stale copy.
+
+## Local development
+
+Run `npm ci`, then `npm run test:pages` and `npm run build:pages`. `npm run dev` starts a local Vite preview. Never commit a GitHub token.
 
 ## Authentication
 
