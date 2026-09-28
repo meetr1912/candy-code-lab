@@ -1,6 +1,4 @@
 {
-  "format": "candy-code-ledger/v2",
-  "migratedAt": null,
   "attempts": [
     {
       "id": "archive-01",
@@ -347,6 +345,8 @@
       "requestId": "45746ea5-5066-47cc-bbc9-e5086b9fd3aa"
     }
   ],
+  "format": "candy-code-ledger/v2",
+  "migratedAt": "2026-09-28T11:25:01.303Z",
   "requests": [
     {
       "id": "0acfb94d-bdfa-4d53-9212-23e4e2217064",
