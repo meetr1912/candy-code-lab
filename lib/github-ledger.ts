@@ -6,7 +6,7 @@ const MAX_BYTES = 950_000;
 export class GithubLedger {
   // Session memory only: never localStorage, sessionStorage, URLs, or a bundled secret.
   private token = "";
-  constructor(private request: typeof fetch = fetch) {}
+  constructor(private request: typeof fetch = (input, init) => fetch(input, init)) {}
   connect(token: string) { this.token = token.trim(); }
   disconnect() { this.token = ""; }
   private headers() {
