@@ -28,7 +28,7 @@ export const SEED_ATTEMPTS: Attempt[] = [
   { id: "archive-06", code: "10459", outcome: "accepted", observedTier: "bronze", note: "Reported working; later identified as Bronze.", recordedAt: null, source: "transcript" },
   { id: "archive-07", code: "47788", outcome: "rejected", observedTier: null, note: "Reported failure on a second attempt. Cause unknown; the earlier acceptance is preserved.", recordedAt: null, source: "transcript" },
   { id: "archive-08", code: "81755", outcome: "rejected", observedTier: null, note: "Reported failure despite matching the original checksum hypothesis.", recordedAt: null, source: "transcript" },
-  { id: "archive-09", code: "47724", outcome: "accepted", observedTier: "bronze", note: "Last reported result in the supplied archive.", recordedAt: null, source: "transcript" },
+  { id: "archive-09", code: "47724", outcome: "accepted", observedTier: "silver", note: "Reported working and confirmed as Silver.", recordedAt: null, source: "transcript" },
 ];
 
 export const mod10 = (value: number) => ((value % 10) + 10) % 10;
