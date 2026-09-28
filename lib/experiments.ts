@@ -1,6 +1,7 @@
 import { checkCode, summarizeCode, type Attempt, type LabState, type Tier } from "./promo";
 
 export type TierEvidence = { tier: Tier; distinctCodes: number; fittingAffineRules: number | null };
+export type FirstUseEvidence = { accepted: number; rejected: number };
 
 // Count fourth-digit rules of the form (a*d1 + b*d2 + c*d3 + k) mod 10.
 // This describes arithmetic fit only. It cannot establish redeemability.
@@ -25,7 +26,17 @@ export function experimentEvidence(state: LabState) {
   const syntheticAccepted = synthetic.filter(c => state.attempts.some(a => a.code === c.code && a.outcome === "accepted"));
   const syntheticRejected = synthetic.filter(c => state.attempts.some(a => a.code === c.code && a.outcome === "rejected") && !syntheticAccepted.some(a => a.code === c.code));
   const silverOnBronzeRule = accepted.filter(a => a.tiers.includes("silver") && checkCode(a.code).predictedTiers.includes("bronze")).map(a => a.code);
-  return { tiers, syntheticAccepted: syntheticAccepted.length, syntheticRejected: syntheticRejected.length, silverOnBronzeRule };
+  const firstUse: Record<"backend-issued" | "calculated", FirstUseEvidence> = {
+    "backend-issued": { accepted: 0, rejected: 0 }, calculated: { accepted: 0, rejected: 0 },
+  };
+  const counted = new Set<string>();
+  for (const attempt of [...state.attempts].sort((a, b) => (a.recordedAt ?? "").localeCompare(b.recordedAt ?? ""))) {
+    const context = attempt.testContext;
+    if (!context || context.use !== "first" || context.origin === "unknown" || counted.has(attempt.code)) continue;
+    counted.add(attempt.code);
+    firstUse[context.origin][attempt.outcome]++;
+  }
+  return { tiers, syntheticAccepted: syntheticAccepted.length, syntheticRejected: syntheticRejected.length, silverOnBronzeRule, firstUse };
 }
 
 export type HistoryEvent =
