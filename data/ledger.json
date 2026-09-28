@@ -76,8 +76,8 @@
       "id": "archive-09",
       "code": "47724",
       "outcome": "accepted",
-      "observedTier": "bronze",
-      "note": "Last reported result in the supplied archive.",
+      "observedTier": "silver",
+      "note": "Reported working and confirmed as Silver.",
       "recordedAt": null,
       "source": "transcript"
     },
