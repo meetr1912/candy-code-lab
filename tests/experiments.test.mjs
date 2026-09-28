@@ -23,3 +23,8 @@ test("counts distinct observed tiers, excludes retries from fitting, and keeps e
   assert.equal(events[0].id, "synthetic-rejection");
   assert.equal(events.at(-1).id, "silver");
 });
+test("compares distinct tagged first uses and leaves legacy attempts unclassified", () => {
+  const attempt = (id, code, outcome, origin, use, recordedAt) => ({ id, code, outcome, observedTier: null, note: "", recordedAt, source: "manual", testContext: { origin, use, campaign: "batch A" } });
+  const attempts = [attempt("retry", "10000", "rejected", "backend-issued", "retry", "2026-09-28T12:03:00Z"), attempt("first", "10000", "accepted", "backend-issued", "first", "2026-09-28T12:00:00Z"), attempt("duplicate", "10000", "accepted", "backend-issued", "first", "2026-09-28T12:01:00Z"), attempt("calc", "20000", "rejected", "calculated", "first", "2026-09-28T12:02:00Z"), { id: "old", code: "30000", outcome: "accepted", observedTier: null, note: "", recordedAt: null, source: "transcript" }];
+  assert.deepEqual(experimentEvidence({ attempts, candidates: [] }).firstUse, { "backend-issued": { accepted: 1, rejected: 0 }, calculated: { accepted: 0, rejected: 1 } });
+});
