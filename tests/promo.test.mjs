@@ -4,11 +4,11 @@ import { build } from "esbuild";
 const compiled = await build({ entryPoints: [new URL("../lib/promo.ts", import.meta.url).pathname], bundle: true, write: false, format: "esm", platform: "node" });
 const p = await import("data:text/javascript;base64," + Buffer.from(compiled.outputFiles[0].text).toString("base64"));
 
-test("reproduces the fitted Gold examples and preserves corrected observed tiers", () => {
+test("reproduces fitted Gold arithmetic and corrected observed tiers", () => {
   for (const code of ["93619", "22340", "50384", "47788"]) assert.equal(p.candidateFor(code.slice(0, 3), "gold"), code);
   assert.equal(p.candidateFor("104", "bronze"), "10459");
   assert.deepEqual(p.summarizeCode("47724", p.SEED_ATTEMPTS).observedTiers, ["silver"]);
-  assert.equal(p.candidateFor("477", "bronze"), "47724", "the legacy Bronze arithmetic misclassifies a confirmed Silver code");
+  assert.equal(p.candidateFor("477", "bronze"), "47724", "the old Bronze arithmetic also matches confirmed Silver");
 });
 test("distinguishes arithmetic mismatch from a reported rejection", () => {
   assert.equal(p.checkCode("10455").matches, false);
