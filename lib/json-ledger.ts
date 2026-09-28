@@ -4,15 +4,16 @@ import { SEED_ATTEMPTS, candidatePool, sampleCandidates } from "./promo";
 const code = z.string().regex(/^\d{5}$/);
 const tier = z.enum(["gold", "bronze", "silver", "diamond"]);
 const timestamp = z.string().datetime();
+const testContext = z.object({ origin: z.enum(["backend-issued", "calculated", "unknown"]), use: z.enum(["first", "retry", "unknown"]), campaign: z.string().trim().max(80) });
 const attempt = z.object({
   id: z.string().min(1).max(100), code, outcome: z.enum(["accepted", "rejected"]),
   observedTier: tier.nullable(), note: z.string().max(500),
-  recordedAt: timestamp.nullable(), source: z.enum(["transcript", "manual"]),
+  recordedAt: timestamp.nullable(), source: z.enum(["transcript", "manual"]), testContext: testContext.optional(),
 }).refine(a => a.outcome !== "rejected" || a.observedTier === null);
 const candidate = z.object({ code, predictedTier: z.enum(["gold", "bronze"]), generatedAt: timestamp, requestId: z.string().uuid() });
 const stateSchema = z.object({ attempts: z.array(attempt), candidates: z.array(candidate) });
 const generation = z.object({ requestId: z.string().uuid(), tier: z.enum(["gold", "bronze"]), count: z.number().int().min(1).max(25), leadingZeros: z.boolean() });
-const record = z.object({ requestId: z.string().uuid(), code, outcome: z.enum(["accepted", "rejected"]), observedTier: tier.nullable(), note: z.string().max(500).transform(s => s.trim()) })
+const record = z.object({ requestId: z.string().uuid(), code, outcome: z.enum(["accepted", "rejected"]), observedTier: tier.nullable(), note: z.string().max(500).transform(s => s.trim()), testContext: testContext.optional() })
   .refine(a => a.outcome !== "rejected" || a.observedTier === null, "Rejected attempts cannot establish a tier.");
 const schema = stateSchema.extend({
   format: z.literal("candy-code-ledger/v2"),
@@ -79,7 +80,7 @@ export function applyOperation(ledger: Ledger, path: string, input: unknown): { 
     const { requestId, ...details } = record.parse(input);
     const prior = next.attempts.find(a => a.id === requestId);
     if (prior) {
-      if (prior.code !== details.code || prior.outcome !== details.outcome || prior.observedTier !== details.observedTier || prior.note !== details.note) throw new Error("That request was already saved with different details.");
+      if (prior.code !== details.code || prior.outcome !== details.outcome || prior.observedTier !== details.observedTier || prior.note !== details.note || JSON.stringify(prior.testContext) !== JSON.stringify(details.testContext)) throw new Error("That request was already saved with different details.");
       return { ledger, changed: false, result: prior };
     }
     const saved = { id: requestId, ...details, recordedAt: new Date().toISOString(), source: "manual" as const };
