@@ -116,3 +116,9 @@ h2 { font-size: 1.125rem; font-weight: 650; letter-spacing: -.025em; }
 .github-controls details { margin-top: 16px; }
 .github-controls summary { cursor: pointer; }
 .github-controls a { overflow-wrap: anywhere; }
+.research-panel { margin-bottom: 24px; }
+.research-panel > summary { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; cursor: pointer; font-size: 1rem; font-weight: 650; }
+.research-panel > summary .small-note { margin-left: auto; font-weight: 400; }
+.research-content { display: grid; gap: 18px; padding-top: 22px; }
+.research-content > h2 { font-size: 1.2rem; font-weight: 650; margin-top: 8px; }
+.research-content > .attempt-list { margin-top: 0; }
