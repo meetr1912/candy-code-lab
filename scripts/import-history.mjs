@@ -1,0 +1,10 @@
+import { build } from 'esbuild';
+import { readFile, writeFile } from 'node:fs/promises';
+const compiled = await build({ entryPoints: ['lib/json-ledger.ts'], bundle: true, write: false, format: 'esm', platform: 'node' });
+const { mergeExport, parseLedger } = await import('data:text/javascript;base64,' + Buffer.from(compiled.outputFiles[0].text).toString('base64'));
+if (!process.argv[2]) throw new Error('Usage: npm run migrate:github -- /path/to/candy-code-history.json');
+const current = parseLedger(JSON.parse(await readFile('data/ledger.json', 'utf8')));
+const imported = JSON.parse(await readFile(process.argv[2], 'utf8'));
+const next = mergeExport(current, imported);
+await writeFile('data/ledger.json', JSON.stringify(next, null, 2) + '\n');
+console.log(`Imported ledger: ${next.candidates.length} candidates, ${next.attempts.length} attempts.`);

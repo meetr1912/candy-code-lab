@@ -1,0 +1,418 @@
+{
+  "format": "candy-code-ledger/v2",
+  "migratedAt": null,
+  "attempts": [
+    {
+      "id": "archive-01",
+      "code": "93619",
+      "outcome": "accepted",
+      "observedTier": "gold",
+      "note": "Initial seed; later identified as Gold.",
+      "recordedAt": null,
+      "source": "transcript"
+    },
+    {
+      "id": "archive-02",
+      "code": "22340",
+      "outcome": "accepted",
+      "observedTier": "gold",
+      "note": "Initial seed; later identified as Gold.",
+      "recordedAt": null,
+      "source": "transcript"
+    },
+    {
+      "id": "archive-03",
+      "code": "50384",
+      "outcome": "accepted",
+      "observedTier": "gold",
+      "note": "Initial seed; later identified as Gold.",
+      "recordedAt": null,
+      "source": "transcript"
+    },
+    {
+      "id": "archive-04",
+      "code": "10455",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "Reported failure; exact machine response not supplied.",
+      "recordedAt": null,
+      "source": "transcript"
+    },
+    {
+      "id": "archive-05",
+      "code": "47788",
+      "outcome": "accepted",
+      "observedTier": "gold",
+      "note": "Reported working; later identified as Gold.",
+      "recordedAt": null,
+      "source": "transcript"
+    },
+    {
+      "id": "archive-06",
+      "code": "10459",
+      "outcome": "accepted",
+      "observedTier": "bronze",
+      "note": "Reported working; later identified as Bronze.",
+      "recordedAt": null,
+      "source": "transcript"
+    },
+    {
+      "id": "archive-07",
+      "code": "47788",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "Reported failure on a second attempt. Cause unknown; the earlier acceptance is preserved.",
+      "recordedAt": null,
+      "source": "transcript"
+    },
+    {
+      "id": "archive-08",
+      "code": "81755",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "Reported failure despite matching the original checksum hypothesis.",
+      "recordedAt": null,
+      "source": "transcript"
+    },
+    {
+      "id": "archive-09",
+      "code": "47724",
+      "outcome": "accepted",
+      "observedTier": "bronze",
+      "note": "Last reported result in the supplied archive.",
+      "recordedAt": null,
+      "source": "transcript"
+    },
+    {
+      "id": "90c94805-4c0b-4014-981a-1f78244cf678",
+      "code": "47788",
+      "outcome": "accepted",
+      "observedTier": null,
+      "note": "",
+      "recordedAt": "2026-09-06T18:05:04.523Z",
+      "source": "manual"
+    },
+    {
+      "id": "6cd54a1d-9aa5-481f-9837-0ae94aaf6584",
+      "code": "47724",
+      "outcome": "accepted",
+      "observedTier": "silver",
+      "note": "",
+      "recordedAt": "2026-09-28T09:42:05.717Z",
+      "source": "manual"
+    },
+    {
+      "id": "7258acfa-0b2d-48bd-97e6-e09800782a9b",
+      "code": "47724",
+      "outcome": "accepted",
+      "observedTier": "silver",
+      "note": "",
+      "recordedAt": "2026-09-28T09:42:25.424Z",
+      "source": "manual"
+    },
+    {
+      "id": "0e29f43a-6d70-46a5-aab2-9d953befa409",
+      "code": "81755",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "",
+      "recordedAt": "2026-09-28T09:42:44.878Z",
+      "source": "manual"
+    },
+    {
+      "id": "4825f298-2619-430c-ace2-6cb04371e431",
+      "code": "10455",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "",
+      "recordedAt": "2026-09-28T09:42:56.451Z",
+      "source": "manual"
+    },
+    {
+      "id": "3bfa2d7c-e64b-4409-b2a2-20e35630e74a",
+      "code": "92233",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "",
+      "recordedAt": "2026-09-28T09:43:17.039Z",
+      "source": "manual"
+    },
+    {
+      "id": "355b1763-fbce-41fd-8edb-5dfd2e73297d",
+      "code": "57457",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "",
+      "recordedAt": "2026-09-28T09:43:26.525Z",
+      "source": "manual"
+    },
+    {
+      "id": "34b6e5c1-cc7f-4733-85c6-26628be21bec",
+      "code": "56148",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "",
+      "recordedAt": "2026-09-28T09:43:44.148Z",
+      "source": "manual"
+    },
+    {
+      "id": "dc3a03ce-2ca4-45dd-a6b3-47d99352d874",
+      "code": "55528",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "",
+      "recordedAt": "2026-09-28T09:44:00.066Z",
+      "source": "manual"
+    }
+  ],
+  "candidates": [
+    {
+      "code": "15120",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-05T13:42:50.616Z",
+      "requestId": "cbc35f62-4806-4523-8ba9-e41ff142b51f"
+    },
+    {
+      "code": "24346",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-05T13:42:50.616Z",
+      "requestId": "cbc35f62-4806-4523-8ba9-e41ff142b51f"
+    },
+    {
+      "code": "51215",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-05T13:42:50.616Z",
+      "requestId": "cbc35f62-4806-4523-8ba9-e41ff142b51f"
+    },
+    {
+      "code": "75899",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-05T13:42:50.616Z",
+      "requestId": "cbc35f62-4806-4523-8ba9-e41ff142b51f"
+    },
+    {
+      "code": "97922",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-05T13:42:50.616Z",
+      "requestId": "cbc35f62-4806-4523-8ba9-e41ff142b51f"
+    },
+    {
+      "code": "12162",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:30.638Z",
+      "requestId": "2b393452-a9f9-4f4c-b1f3-8d679e4072aa"
+    },
+    {
+      "code": "18566",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:30.638Z",
+      "requestId": "2b393452-a9f9-4f4c-b1f3-8d679e4072aa"
+    },
+    {
+      "code": "40511",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:30.638Z",
+      "requestId": "2b393452-a9f9-4f4c-b1f3-8d679e4072aa"
+    },
+    {
+      "code": "95606",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:30.638Z",
+      "requestId": "2b393452-a9f9-4f4c-b1f3-8d679e4072aa"
+    },
+    {
+      "code": "96695",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:30.638Z",
+      "requestId": "2b393452-a9f9-4f4c-b1f3-8d679e4072aa"
+    },
+    {
+      "code": "18471",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:32.378Z",
+      "requestId": "1f1d5d37-1233-4a89-bc42-6e1e1bd2916b"
+    },
+    {
+      "code": "19820",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:32.378Z",
+      "requestId": "1f1d5d37-1233-4a89-bc42-6e1e1bd2916b"
+    },
+    {
+      "code": "47279",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:32.378Z",
+      "requestId": "1f1d5d37-1233-4a89-bc42-6e1e1bd2916b"
+    },
+    {
+      "code": "52493",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:32.378Z",
+      "requestId": "1f1d5d37-1233-4a89-bc42-6e1e1bd2916b"
+    },
+    {
+      "code": "74819",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:32.378Z",
+      "requestId": "1f1d5d37-1233-4a89-bc42-6e1e1bd2916b"
+    },
+    {
+      "code": "33404",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:33.825Z",
+      "requestId": "22d625f7-3a5a-48cf-8c7b-a56170c54d2f"
+    },
+    {
+      "code": "35022",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:33.825Z",
+      "requestId": "22d625f7-3a5a-48cf-8c7b-a56170c54d2f"
+    },
+    {
+      "code": "47639",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:33.825Z",
+      "requestId": "22d625f7-3a5a-48cf-8c7b-a56170c54d2f"
+    },
+    {
+      "code": "53202",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:33.825Z",
+      "requestId": "22d625f7-3a5a-48cf-8c7b-a56170c54d2f"
+    },
+    {
+      "code": "77066",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:33.825Z",
+      "requestId": "22d625f7-3a5a-48cf-8c7b-a56170c54d2f"
+    },
+    {
+      "code": "43493",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:35.007Z",
+      "requestId": "0acfb94d-bdfa-4d53-9212-23e4e2217064"
+    },
+    {
+      "code": "45831",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:35.007Z",
+      "requestId": "0acfb94d-bdfa-4d53-9212-23e4e2217064"
+    },
+    {
+      "code": "62482",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:35.007Z",
+      "requestId": "0acfb94d-bdfa-4d53-9212-23e4e2217064"
+    },
+    {
+      "code": "66713",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:35.007Z",
+      "requestId": "0acfb94d-bdfa-4d53-9212-23e4e2217064"
+    },
+    {
+      "code": "81386",
+      "predictedTier": "bronze",
+      "generatedAt": "2026-09-06T18:05:35.007Z",
+      "requestId": "0acfb94d-bdfa-4d53-9212-23e4e2217064"
+    },
+    {
+      "code": "33706",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-28T09:40:22.615Z",
+      "requestId": "45746ea5-5066-47cc-bbc9-e5086b9fd3aa"
+    },
+    {
+      "code": "55528",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-28T09:40:22.615Z",
+      "requestId": "45746ea5-5066-47cc-bbc9-e5086b9fd3aa"
+    },
+    {
+      "code": "56148",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-28T09:40:22.615Z",
+      "requestId": "45746ea5-5066-47cc-bbc9-e5086b9fd3aa"
+    },
+    {
+      "code": "57457",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-28T09:40:22.615Z",
+      "requestId": "45746ea5-5066-47cc-bbc9-e5086b9fd3aa"
+    },
+    {
+      "code": "92233",
+      "predictedTier": "gold",
+      "generatedAt": "2026-09-28T09:40:22.615Z",
+      "requestId": "45746ea5-5066-47cc-bbc9-e5086b9fd3aa"
+    }
+  ],
+  "requests": [
+    {
+      "id": "0acfb94d-bdfa-4d53-9212-23e4e2217064",
+      "parameters": "{\"tier\":\"bronze\",\"count\":5,\"leadingZeros\":false}",
+      "codes": [
+        "81386",
+        "66713",
+        "45831",
+        "62482",
+        "43493"
+      ]
+    },
+    {
+      "id": "1f1d5d37-1233-4a89-bc42-6e1e1bd2916b",
+      "parameters": "{\"tier\":\"bronze\",\"count\":5,\"leadingZeros\":false}",
+      "codes": [
+        "47279",
+        "74819",
+        "19820",
+        "52493",
+        "18471"
+      ]
+    },
+    {
+      "id": "22d625f7-3a5a-48cf-8c7b-a56170c54d2f",
+      "parameters": "{\"tier\":\"bronze\",\"count\":5,\"leadingZeros\":false}",
+      "codes": [
+        "53202",
+        "77066",
+        "33404",
+        "35022",
+        "47639"
+      ]
+    },
+    {
+      "id": "2b393452-a9f9-4f4c-b1f3-8d679e4072aa",
+      "parameters": "{\"tier\":\"bronze\",\"count\":5,\"leadingZeros\":false}",
+      "codes": [
+        "12162",
+        "95606",
+        "96695",
+        "18566",
+        "40511"
+      ]
+    },
+    {
+      "id": "45746ea5-5066-47cc-bbc9-e5086b9fd3aa",
+      "parameters": "{\"tier\":\"gold\",\"count\":5,\"leadingZeros\":false}",
+      "codes": [
+        "55528",
+        "33706",
+        "92233",
+        "57457",
+        "56148"
+      ]
+    },
+    {
+      "id": "cbc35f62-4806-4523-8ba9-e41ff142b51f",
+      "parameters": "{\"tier\":\"gold\",\"count\":5,\"leadingZeros\":false}",
+      "codes": [
+        "97922",
+        "51215",
+        "75899",
+        "15120",
+        "24346"
+      ]
+    }
+  ]
+}
