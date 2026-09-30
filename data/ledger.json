@@ -161,6 +161,20 @@
       "note": "",
       "recordedAt": "2026-09-28T09:44:00.066Z",
       "source": "manual"
+    },
+    {
+      "id": "report-33404-2026-09-29",
+      "code": "33404",
+      "outcome": "accepted",
+      "observedTier": "gold",
+      "note": "User reported first successful redemption on 2026-09-29 (America/Halifax). Generated from prior candidate history; exact machine response and redemption time not supplied.",
+      "recordedAt": "2026-09-30T00:09:13.373Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "first",
+        "campaign": ""
+      }
     }
   ],
   "candidates": [
