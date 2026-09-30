@@ -163,12 +163,12 @@
       "source": "manual"
     },
     {
-      "id": "report-33404-2026-09-29",
+      "id": "bcb8ad0f-2a33-45a1-9c33-433400000001",
       "code": "33404",
       "outcome": "accepted",
       "observedTier": "gold",
-      "note": "User reported first successful redemption on 2026-09-29 (America/Halifax). Generated from prior candidate history; exact machine response and redemption time not supplied.",
-      "recordedAt": "2026-09-30T00:09:13.373Z",
+      "note": "Reported first successful redemption on 2026-09-29 (America/Halifax); generated from history. Exact machine response/time not supplied.",
+      "recordedAt": "2026-09-30T00:17:59.353Z",
       "source": "manual",
       "testContext": {
         "origin": "calculated",
@@ -363,14 +363,25 @@
   "migratedAt": "2026-09-28T11:25:01.303Z",
   "requests": [
     {
-      "id": "0acfb94d-bdfa-4d53-9212-23e4e2217064",
+      "id": "cbc35f62-4806-4523-8ba9-e41ff142b51f",
+      "parameters": "{\"tier\":\"gold\",\"count\":5,\"leadingZeros\":false}",
+      "codes": [
+        "97922",
+        "51215",
+        "75899",
+        "15120",
+        "24346"
+      ]
+    },
+    {
+      "id": "2b393452-a9f9-4f4c-b1f3-8d679e4072aa",
       "parameters": "{\"tier\":\"bronze\",\"count\":5,\"leadingZeros\":false}",
       "codes": [
-        "81386",
-        "66713",
-        "45831",
-        "62482",
-        "43493"
+        "12162",
+        "95606",
+        "96695",
+        "18566",
+        "40511"
       ]
     },
     {
@@ -396,14 +407,14 @@
       ]
     },
     {
-      "id": "2b393452-a9f9-4f4c-b1f3-8d679e4072aa",
+      "id": "0acfb94d-bdfa-4d53-9212-23e4e2217064",
       "parameters": "{\"tier\":\"bronze\",\"count\":5,\"leadingZeros\":false}",
       "codes": [
-        "12162",
-        "95606",
-        "96695",
-        "18566",
-        "40511"
+        "81386",
+        "66713",
+        "45831",
+        "62482",
+        "43493"
       ]
     },
     {
@@ -415,17 +426,6 @@
         "92233",
         "57457",
         "56148"
-      ]
-    },
-    {
-      "id": "cbc35f62-4806-4523-8ba9-e41ff142b51f",
-      "parameters": "{\"tier\":\"gold\",\"count\":5,\"leadingZeros\":false}",
-      "codes": [
-        "97922",
-        "51215",
-        "75899",
-        "15120",
-        "24346"
       ]
     }
   ]
