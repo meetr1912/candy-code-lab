@@ -28,3 +28,12 @@ test("compares distinct tagged first uses and leaves legacy attempts unclassifie
   const attempts = [attempt("retry", "10000", "rejected", "backend-issued", "retry", "2026-09-28T12:03:00Z"), attempt("first", "10000", "accepted", "backend-issued", "first", "2026-09-28T12:00:00Z"), attempt("duplicate", "10000", "accepted", "backend-issued", "first", "2026-09-28T12:01:00Z"), attempt("calc", "20000", "rejected", "calculated", "first", "2026-09-28T12:02:00Z"), { id: "old", code: "30000", outcome: "accepted", observedTier: null, note: "", recordedAt: null, source: "transcript" }];
   assert.deepEqual(experimentEvidence({ attempts, candidates: [] }).firstUse, { "backend-issued": { accepted: 1, rejected: 0 }, calculated: { accepted: 0, rejected: 1 } });
 });
+test("33404 falsifies the simple Gold digit rule while confirming one generated candidate", () => {
+  const codes = ["93619", "22340", "50384", "47788", "33404"];
+  const attempts = codes.map((code, index) => ({ id: `gold-${index}`, code, outcome: "accepted", observedTier: "gold", note: "", recordedAt: null, source: "manual" }));
+  const candidates = [{ code: "33404", predictedTier: "bronze", generatedAt: "2026-09-06T18:05:33.825Z", requestId: "batch" }];
+  const evidence = experimentEvidence({ attempts, candidates });
+  assert.equal(evidence.tiers[0].distinctCodes, 5);
+  assert.equal(evidence.tiers[0].fittingAffineRules, 0);
+  assert.equal(evidence.syntheticAccepted, 1);
+});
