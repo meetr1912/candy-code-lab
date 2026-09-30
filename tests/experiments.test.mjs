@@ -3,7 +3,7 @@ import test from "node:test";
 import { build } from "esbuild";
 
 const compiled = await build({ entryPoints: [new URL("../lib/experiments.ts", import.meta.url).pathname], bundle: true, write: false, format: "esm", platform: "node" });
-const { experimentEvidence, historyEvents } = await import("data:text/javascript;base64," + Buffer.from(compiled.outputFiles[0].text).toString("base64"));
+const { experimentEvidence, historyEvents, checksumEvidence } = await import("data:text/javascript;base64," + Buffer.from(compiled.outputFiles[0].text).toString("base64"));
 
 test("counts distinct observed tiers, excludes retries from fitting, and keeps every event", () => {
   const attempts = [
@@ -36,4 +36,15 @@ test("33404 falsifies the simple Gold digit rule while confirming one generated 
   assert.equal(evidence.tiers[0].distinctCodes, 5);
   assert.equal(evidence.tiers[0].fittingAffineRules, 0);
   assert.equal(evidence.syntheticAccepted, 1);
+});
+test("all known outcomes leave one affine checksum that still matches thirteen rejections", () => {
+  const accepted = ["93619", "22340", "50384", "47788", "10459", "47724", "33404"];
+  const rejected = ["10455", "81755", "92233", "57457", "56148", "55528", "33706", "81386", "66713", "62482", "45831", "43493", "77066", "53202"];
+  assert.deepEqual(checksumEvidence(accepted, rejected), { fittingRules: 1, rejectedMatchingBest: 13, distinctRejected: 14, uniqueWeights: [8, 8, 4, 9, 0] });
+  const attempts = [...accepted.map((code, i) => ({ id: `a-${i}`, code, outcome: "accepted", observedTier: i < 4 || code === "33404" ? "gold" : code === "10459" ? "bronze" : "silver", note: "", recordedAt: null, source: "manual" })), ...rejected.map((code, i) => ({ id: `r-${i}`, code, outcome: "rejected", observedTier: null, note: "", recordedAt: null, source: "manual" }))];
+  const candidates = [...["33706", "55528", "56148", "57457", "92233"].map(code => ({ code, predictedTier: "gold", generatedAt: "2026-09-28T09:40:22.615Z", requestId: "g" })), ...["33404", "81386", "66713", "62482", "45831", "43493", "77066", "53202"].map(code => ({ code, predictedTier: "bronze", generatedAt: "2026-09-28T09:40:22.615Z", requestId: "b" }))];
+  const evidence = experimentEvidence({ attempts, candidates });
+  assert.deepEqual(evidence.cohorts.map(c => [c.accepted, c.rejected]), [[0, 5], [1, 7]]);
+  assert.deepEqual(evidence.awardedDifferentTier, ["33404"]);
+  assert.equal(evidence.tiers[0].fittingAffineRules, 0);
 });
