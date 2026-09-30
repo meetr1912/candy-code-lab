@@ -21,7 +21,7 @@ I retain the previous tier hypotheses as experimental cohorts:
 - Gold: `d4 = (8*d1 + 7*d3 + 7) mod 10`
 - Bronze: `d4 = (-d1 - d2 - d3) mod 10`
 
-I normalize negative remainders to 0–9. I skip generated or recorded codes and codes that satisfy both cohort rules. The generated code 33404 matched the old Bronze rule but awarded Gold on first use on September 29, 2026. Silver code 47724 also matches it. Neither old rule can classify tiers. I leave Silver and Diamond generation unavailable.
+I normalize negative remainders to 0–9 and skip generated or recorded codes. The old Bronze rule generated 33404, but the machine awarded Gold; it also matches the accepted Silver code 47724. Neither old rule predicts the tier. I leave Silver and Diamond generation unavailable.
 
 **What the tool does**
 
@@ -34,13 +34,13 @@ I normalize negative remainders to 0–9. I skip generated or recorded codes and
 
 **Limits of the model**
 
-The six accepted examples identify one zero-constant linear checksum, but two affine checksums fit them. The alternate `(8*d1 + 8*d2 + 9*d3 + 4*d4 + 5) mod 10` also excludes rejected code 81755. I display that uncertainty without silently switching the requested original model.
+Seven distinct accepted codes leave exactly one affine checksum of the tested form: `(8*d1 + 8*d2 + 4*d3 + 9*d4) mod 10`. It also matches 13 of 14 codes rejected without any recorded acceptance. The old alternate checksum fails on accepted 33404.
 
-The old Gold rule was fitted to four Gold examples and is falsified by 33404. No affine fourth-digit formula of the tested form fits all five distinct Gold codes. The first checksum fits the newly accepted code; the alternative previously discussed does not. I make no claim to have recovered the firmware.
+Five distinct Gold examples have no common affine fourth-digit tier rule of the tested form. The old Gold-rule generated cohort has 0 accepted and 5 rejected; the old Bronze-rule cohort has 1 accepted (awarded Gold) and 7 rejected. These selected tests do not establish population success probabilities. Eight latest rejections have unknown first-use status.
 
-**Saving and source of truth**
+**Storage**
 
-The owner-only ChatGPT Site now writes directly to its D1 database. The save form requires no GitHub token. The D1 database contains the original attempts and generated codes plus the newly reported Gold result. The public `data/ledger.json` is a historical snapshot, not a live synchronized database. GitHub Pages redirects to the Site to prevent new results from entering a second writable store. Do not use the JSON snapshot as current evidence after additional Site saves.
+The owner-only ChatGPT Site saves attempts directly to its D1 database, including the original attempts and generated history. GitHub Pages redirects to the Site. The public `data/ledger.json` is a snapshot, currently manually aligned with the Site. The prepared scheduled mirror requires a `CANDY_SITE_ACCESS_TOKEN` GitHub Actions secret before it can keep the JSON current automatically; this gives the workflow access to the private Site export endpoint.
 
 **Development**
 
