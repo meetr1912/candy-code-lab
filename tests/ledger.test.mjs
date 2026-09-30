@@ -23,6 +23,7 @@ beforeEach(() => {
   const prepare = (sql, params = []) => ({
     bind: (...values) => prepare(sql, values),
     first: async () => sqlite.prepare(sql).get(...params) ?? null,
+    all: async () => ({ success: true, results: sqlite.prepare(sql).all(...params) }),
     run: async () => ({ success: true, meta: sqlite.prepare(sql).run(...params) }),
     execute: () => ({ success: true, results: sqlite.prepare(sql).all(...params) }),
   });
@@ -40,6 +41,7 @@ test("generation is idempotent and preserves exactly one batch", async () => {
   const input = generation(); const a = await store.generate(input); const b = await store.generate(input);
   assert.deepEqual(a.candidates, b.candidates);
   assert.equal((await store.loadState()).candidates.length, 5);
+  assert.deepEqual((await store.exportLedger()).requests[0].codes, a.candidates.map(c => c.code));
   await assert.rejects(store.generate({ ...input, tier: "bronze" }), e => e.status === 409);
 });
 test("concurrent generation does not allocate a code twice", async () => {
@@ -67,6 +69,9 @@ test("recorded source and first use persist across reload and retries", async ()
   assert.equal(attempts.length, 1);
   assert.deepEqual(attempts[0].testContext, input.testContext);
   await assert.rejects(store.recordAttempt({ ...input, testContext: { ...input.testContext, use: "retry" } }), e => e.status === 409);
+  const exportData = await store.exportLedger();
+  assert.equal(exportData.attempts.find(a => a.code === "33404").observedTier, "gold");
+  assert.deepEqual(exportData.attempts.find(a => a.code === "33404").testContext, input.testContext);
 });
 test("observations capture actual counterexamples without rewriting the checksum model", async () => {
   await store.recordAttempt(observation({ code: "10455", outcome: "accepted", observedTier: "diamond", note: "Local test counterexample" }));
