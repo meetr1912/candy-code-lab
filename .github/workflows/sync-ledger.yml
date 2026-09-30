@@ -1,0 +1,35 @@
+name: Mirror Site ledger
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: candy-ledger-mirror
+  cancel-in-progress: false
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    env:
+      CANDY_SITE_ACCESS_TOKEN: ${{ secrets.CANDY_SITE_ACCESS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Export owner Site history
+        if: env.CANDY_SITE_ACCESS_TOKEN != ''
+        run: |
+          curl --fail --silent --show-error --retry 2 \
+            --header "OAI-Sites-Authorization: Bearer $CANDY_SITE_ACCESS_TOKEN" \
+            'https://candy-code-lab.meetr1912.chatgpt.site/api/export' \
+            --output "$RUNNER_TEMP/candy-ledger.json"
+          node scripts/sync-ledger.mjs "$RUNNER_TEMP/candy-ledger.json"
+          if ! git diff --quiet -- data/ledger.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add data/ledger.json
+            git commit -m 'Mirror Candy Code Lab results from Site'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
