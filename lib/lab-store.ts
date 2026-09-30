@@ -3,6 +3,7 @@ import {
   SEED_ATTEMPTS, candidatePool, sampleCandidates, normalizeCode,
   type Attempt, type Candidate, type LabState, type TargetTier, type Tier,
 } from "./promo";
+import { parseLedger } from "./json-ledger";
 
 export class LabError extends Error {
   constructor(message: string, public status = 400) { super(message); }
@@ -22,6 +23,16 @@ export async function loadState(): Promise<LabState> {
     candidates: result[0].results as unknown as Candidate[],
     attempts: [...SEED_ATTEMPTS, ...(result[1].results as unknown as (Attempt & { testContextJson: string | null })[]).map(({ testContextJson, ...a }) => ({ ...a, ...(testContextJson ? { testContext: JSON.parse(testContextJson) as Attempt["testContext"] } : {}), source: "manual" as const }))],
   };
+}
+
+export async function exportLedger() {
+  const state = await loadState();
+  const rows = await db().prepare("SELECT id, parameters, response_json AS responseJson FROM generation_requests ORDER BY created_at, id").all<{ id: string; parameters: string; responseJson: string }>();
+  return parseLedger({
+    format: "candy-code-ledger/v2", migratedAt: "2026-09-28T11:25:01.303Z",
+    ...state,
+    requests: rows.results.map(row => ({ id: row.id, parameters: row.parameters, codes: (JSON.parse(row.responseJson) as Candidate[]).map(c => c.code) })),
+  });
 }
 
 function requestId(value: unknown): string {
