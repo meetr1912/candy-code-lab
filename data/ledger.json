@@ -175,6 +175,118 @@
         "use": "first",
         "campaign": ""
       }
+    },
+    {
+      "id": "20262909-0000-4000-8000-000000033706",
+      "code": "33706",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "User reported rejection of generated candidate on 2026-09-29 (America/Halifax); exact machine response and attempt time not supplied.",
+      "recordedAt": "2026-09-30T00:25:37.215Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "unknown",
+        "campaign": ""
+      }
+    },
+    {
+      "id": "20262909-0000-4000-8000-000000081386",
+      "code": "81386",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "User reported rejection of generated candidate on 2026-09-29 (America/Halifax); exact machine response and attempt time not supplied.",
+      "recordedAt": "2026-09-30T00:25:38.197Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "unknown",
+        "campaign": ""
+      }
+    },
+    {
+      "id": "20262909-0000-4000-8000-000000066713",
+      "code": "66713",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "User reported rejection of generated candidate on 2026-09-29 (America/Halifax); exact machine response and attempt time not supplied.",
+      "recordedAt": "2026-09-30T00:25:39.027Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "unknown",
+        "campaign": ""
+      }
+    },
+    {
+      "id": "20262909-0000-4000-8000-000000062482",
+      "code": "62482",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "User reported rejection of generated candidate on 2026-09-29 (America/Halifax); exact machine response and attempt time not supplied.",
+      "recordedAt": "2026-09-30T00:25:40.201Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "unknown",
+        "campaign": ""
+      }
+    },
+    {
+      "id": "20262909-0000-4000-8000-000000045831",
+      "code": "45831",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "User reported rejection of generated candidate on 2026-09-29 (America/Halifax); exact machine response and attempt time not supplied.",
+      "recordedAt": "2026-09-30T00:25:41.224Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "unknown",
+        "campaign": ""
+      }
+    },
+    {
+      "id": "20262909-0000-4000-8000-000000043493",
+      "code": "43493",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "User reported rejection of generated candidate on 2026-09-29 (America/Halifax); exact machine response and attempt time not supplied.",
+      "recordedAt": "2026-09-30T00:25:42.138Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "unknown",
+        "campaign": ""
+      }
+    },
+    {
+      "id": "20262909-0000-4000-8000-000000077066",
+      "code": "77066",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "User reported rejection of generated candidate on 2026-09-29 (America/Halifax); exact machine response and attempt time not supplied.",
+      "recordedAt": "2026-09-30T00:25:43.142Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "unknown",
+        "campaign": ""
+      }
+    },
+    {
+      "id": "20262909-0000-4000-8000-000000053202",
+      "code": "53202",
+      "outcome": "rejected",
+      "observedTier": null,
+      "note": "User reported rejection of generated candidate on 2026-09-29 (America/Halifax); exact machine response and attempt time not supplied.",
+      "recordedAt": "2026-09-30T00:25:43.942Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "unknown",
+        "campaign": ""
+      }
     }
   ],
   "candidates": [
