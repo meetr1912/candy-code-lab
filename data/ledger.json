@@ -287,6 +287,20 @@
         "use": "unknown",
         "campaign": ""
       }
+    },
+    {
+      "id": "20261002-0000-4000-8000-000000024346",
+      "code": "24346",
+      "outcome": "accepted",
+      "observedTier": "silver",
+      "note": "User confirmed successful redemption as Silver on 2026-10-02 (America/Halifax). Exact redemption time and machine response not supplied. The earlier candidate prediction of Gold is preserved as provenance, not the observed tier.",
+      "recordedAt": "2026-10-03T01:26:15.229Z",
+      "source": "manual",
+      "testContext": {
+        "origin": "calculated",
+        "use": "unknown",
+        "campaign": ""
+      }
     }
   ],
   "candidates": [
